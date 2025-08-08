@@ -1,19 +1,64 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-snow-white: #ebebeb;
+  /* font variables */
+  --black-color: #000;
+  --default-font-size: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html{
+  height: 100vh;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  color: var(--black-color);
+  background-color: var(--bg-snow-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: var(--default-font-size);
 }
+
+@layer utilities {
+  /* Background colors */
+  .bg-snow-white { background-color: #ebebeb; }
+  .bg-main-brand-blue-100 { background-color: #CCE6FE; }
+  .bg-main-brand-blue-200 { background-color: #99CAFE; }
+  .bg-main-brand-blue-300 { background-color: #66A9FC; }
+  .bg-main-brand-blue-400 { background-color: #408CF9; }
+  .bg-main-brand-blue-500 { background-color: #035DF5; }
+  .bg-main-brand-blue-600 { background-color: #0247D2; }
+  .bg-main-brand-blue-700 { background-color: #0135B0; }
+  .bg-main-brand-blue-800 { background-color: #00258E; }
+  .bg-main-brand-blue-900 { background-color: #001A75; }
+  .bg-light-grey-400 { background-color: #E7E4E4; }
+  .bg-light-grey-500 { background-color: #bcbcbc; }
+
+  /* Border colors */
+  .border-main-brand-green-300 { border-color: #1dbb9e; }
+  .border-light-grey-300 { border-color: #D9D9D9; }
+  .border-light-grey-400 { border-color: #E7E4E4; }
+  .border-light-grey-500 { border-color: #bcbcbc; }
+  .border-light-grey-600 { border-color: #ABABAB; }
+
+  /* Text colors */
+  .text-main-brand-blue-100 { color: #CCE6FE; }
+  .text-main-brand-blue-200 { color: #99CAFE; }
+  .text-main-brand-blue-300 { color: #66A9FC; }
+  .text-main-brand-blue-400 { color: #408CF9; }
+  .text-main-brand-blue-500 { color: #035DF5; }
+  .text-main-brand-blue-600 { color: #0247D2; }
+  .text-main-brand-blue-700 { color: #0135B0; }
+  .text-main-brand-blue-800 { color: #00258E; }
+  .text-main-brand-blue-900 { color: #001A75; }
+  .text-light-grey-800 { color: #636363; }
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --bg-snow-white: #171717;
+    --black-color: #ededed;
+  }
+} */
