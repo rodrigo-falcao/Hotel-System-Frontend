@@ -55,10 +55,3 @@ body {
   .text-main-brand-blue-900 { color: #001A75; }
   .text-light-grey-800 { color: #636363; }
 }
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-snow-white: #171717;
-    --black-color: #ededed;
-  }
-} */
