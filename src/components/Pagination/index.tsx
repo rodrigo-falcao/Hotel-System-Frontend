@@ -7,8 +7,6 @@ type PaginationProps = {
     destination: string;
 };
 
-const pages = [1,2,3,4,5]
-
 const pagesStyles = "flex items-center justify-center w-12 h-12 bg-white text-xl font-bold text-light-grey-800 border border-light-grey-300 rounded-lg hover:bg-gray-100";
 const arrowStyles = "flex items-center justify-center w-12 h-12 bg-light-grey-400 text-xl font-bold text-light-grey-800 rounded-lg hover:bg-light-grey-200 transition-colors duration-300";
 const activePageStyles = "mx -1 flex items-center justify-center w-12 h-12 bg-white text-xl font-bold text-main-brand-blue-300 border border-main-brand-blue-300 rounded-lg hover:bg-snow-white";
