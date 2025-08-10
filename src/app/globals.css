@@ -14,7 +14,7 @@ html{
 body {
   height: 100vh;
   color: var(--black-color);
-  background-color: var(--bg-snow-white);
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
