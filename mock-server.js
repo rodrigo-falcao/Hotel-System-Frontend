@@ -13,7 +13,6 @@ app.use(jsonServer.bodyParser);
 
 app.post('/auth/login', (req, res) => {
     const body = req.body;
-
     const user = app.db.get('users').find({ email: body.email, password: body.password }).value();
 
     if (!user) {

@@ -21,7 +21,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     className,
     }: ButtonProps) => {
     const commonStyles =
-        "py-2 px-6 w-full border-none rounded-lg font-medium disabled:bg-slate-300 disabled:cursor-not-allowed";
+        "py-2 px-6 w-full border-none rounded-lg font-medium disabled:bg-slate-300 disabled:cursor-not-allowed cursor-pointer";
     const appearanceStyles = getAppearanceStyle(appearance);
 
     return (
