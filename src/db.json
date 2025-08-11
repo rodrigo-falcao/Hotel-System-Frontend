@@ -1,10 +1,11 @@
 {
     "users": [
         {
-            "id": 1,
-            "name": "John Teste",
-            "avatar": null,
-            "email": "johnteste@example.com"
+        "id": 1,
+        "name": "John Teste",
+        "avatar": null,
+        "email": "johnteste@example.com",
+        "password": 123456
         }
     ]
 }
