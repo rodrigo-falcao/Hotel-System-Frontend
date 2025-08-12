@@ -6,6 +6,7 @@ import TextField from "@/components/form/TextField";
 import CustomLink from "@/components/Link";
 import api from "@/api";
 import { useState } from "react";
+import PasswordFields from "./PasswordFields";
 
 
 const CadastrarPage = () => {
@@ -41,8 +42,7 @@ const CadastrarPage = () => {
                 <ImageField label="Selecionar Foto" id="avatar" name="avatar"/>
                 <TextField label="Digite seu nome" id="name" name="name" type="text" className="mt-2" required/>
                 <TextField label="E-mail" id="email" name="email" type="email" className="mt-2" required/>
-                <TextField label="Senha" id="password" name="password" type="password" className="mt-2" required/>
-                <TextField label="Confirme sua Senha" id="confirm-password" name="confirm-password" type="password" className="mt-2" required/>
+                <PasswordFields />
                 <RadioGroup options={[
                     { label: "Sim", value: "ADMIN", id: "yes" },
                     { label: "Não", value: "USER", id: "no" }
