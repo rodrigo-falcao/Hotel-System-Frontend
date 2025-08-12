@@ -1,11 +1,74 @@
 {
-    "users": [
-        {
-        "id": 1,
-        "name": "John Teste",
-        "avatar": null,
-        "email": "johnteste@example.com",
-        "password": 123456
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "John Teste",
+      "avatar": null,
+      "email": "johnteste@example.com",
+      "password": 123456
+    },
+    {
+      "name": "Rafael USER",
+      "email": "rafaadma@email.com",
+      "password": "12345",
+      "role": "USER",
+      "id": 2
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "12345655",
+      "role": "USER",
+      "avatar": null,
+      "id": 3
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 4
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 5
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 6
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 7
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 8
+    },
+    {
+      "name": "teste",
+      "email": "teste@email.com",
+      "password": "123456",
+      "role": "ADMIN",
+      "avatar": null,
+      "id": 9
+    }
+  ]
 }

@@ -4,11 +4,18 @@ import jwt from 'jsonwebtoken';
 const app = jsonServer.create();
 const router = jsonServer.router('src/db.json');
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    if (req.method === "OPTIONS") {
+        return res.sendStatus(200);
+    }
+    next();
+});
 
 const MOCKED_SECRET = "your_secret_key"
-
 app.db = router.db;
-
 app.use(jsonServer.bodyParser);
 
 app.post('/auth/login', (req, res) => {
