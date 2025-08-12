@@ -4,38 +4,14 @@ import ImageField from "@/components/form/ImageField";
 import RadioGroup from "@/components/form/RadioGroup";
 import TextField from "@/components/form/TextField";
 import CustomLink from "@/components/Link";
+import { signup } from "../api/auth/signup/route";
 
 const CadastrarPage = () => {
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const form = event.currentTarget as HTMLFormElement;
-        const email = form.email.value;
-        const password = form.password.value;
-        // const name = form.name.value;
-        const avatar = form.avatar.files[0];
-        const formData = new FormData();
-        formData.append("email", email);
-        formData.append("password", password);
-        // formData.append("name", name);
-        formData.append("avatar", avatar);
-        const response = await fetch("/api/auth/cadastrar", {
-            method: "POST",
-            body: formData,
-        });
-        const data = await response.json();
-        if (response.ok) {
-            // Handle successful registration
-        } else {
-            // Handle registration error
-        }
-        console.log(data);
-
-    }
+    
     return (
         <article className="max-w-96 w-full flex flex-col items-center justify-center py-4 px-6 border border-light-grey-400 rounded-2xl">
             <span className="mb-4">Entrar ou Cadastrar-se</span>
-            <form className="w-full" onSubmit={handleSubmit}>
+            <form className="w-full" action={signup}>
                 <ImageField label="Selecionar Foto" id="avatar" name="avatar"/>
                 <TextField label="Digite seu nome" id="name" name="name" type="text" className="mt-2" required/>
                 <TextField label="E-mail" id="email" name="email" type="email" className="mt-2" required/>
