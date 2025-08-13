@@ -22,7 +22,7 @@ export default function LoginPage() {
         });
 
         if (result?.ok) {
-            router.push("/home");
+            router.push("/");
         } else {
             // Exiba mensagem de erro se quiser
         }
