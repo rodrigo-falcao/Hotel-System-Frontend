@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
 
 type Owner = {
     id: number;
@@ -11,7 +12,7 @@ type Owner = {
     avatar: string | null;
 };
 
-type Hotel = {
+export type Hotel = {
     id: number;
     name: string;
     description: string;
@@ -24,15 +25,33 @@ type Hotel = {
     owner: Owner;
 };
 
-export default async function Home() {
+type HomeProps = {
+    searchParams?: { page?: string } | Promise<{ page?: string }>;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
     const session = await getServerSession();
     if (!session?.user) redirect("/login");
 
-    const response = await getHotels(); 
-    const hotels: Hotel[] = response.data ?? []; 
+    let params: { page?: string } = {};
+    if (searchParams) {
+        params = typeof (searchParams as Promise<{ page?: string }>).then === "function"
+            ? await searchParams
+            : searchParams as { page?: string };
+    }
+
+    const currentPage = Number(params.page ?? 1);
+    const limit = 8;
+    
+    const response = await getHotels({ page: currentPage, limit }); 
+    const hotels: Hotel[] = response.data ?? [];
+    const total = response.total ?? 0;
+    const totalPages = Math.ceil(total / limit);
 
     return (
-        <section className="grid grid-cols-1 gap-4 px-10 sm:grid-cols-2 sm:px-20 md:grid-cols-3 lg:grid-cols-4 xl:px-48 xl:grid-cols-5 mt-20">
+      <>
+      <div className="flex flex-col items-center">
+        <section className="grid grid-cols-1 gap-8 px-10 sm:grid-cols-2 sm:px-20 md:grid-cols-3 lg:grid-cols-4 xl:px-48 xl:grid-cols-4 mt-20">
             {hotels.map((hotel: Hotel) => (
               <Link key={hotel.id} href={`/hotels/${hotel.id}`}>
                 <article className="flex flex-col">
@@ -53,5 +72,12 @@ export default async function Home() {
               </Link>
             ))}
         </section>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          destination="/"
+        />
+      </div>
+      </>
     );
 }

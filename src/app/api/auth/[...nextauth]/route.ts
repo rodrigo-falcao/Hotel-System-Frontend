@@ -1,7 +1,8 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "@/api";
 import { cookies } from "next/headers";
+import axios from "@/api";
+import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import type { AxiosError } from "axios";
 import type { User } from "next-auth"; 
 
 type SessionUser = {
@@ -58,8 +59,12 @@ const authOptions: NextAuthOptions = {
                         image: user.avatar,
                     };
                 } catch (error) {
+                    const axiosError = error as AxiosError;
+                    if (axiosError.response?.status === 401) {
+                        throw new Error("E-mail ou senha incorretos.");
+                    }
                     console.error("Authorize error:", error);
-                    throw new Error("Authentication failed.");
+                    throw new Error("Erro ao autenticar. Tente novamente.");
                 }
             },
         }),
