@@ -3,8 +3,11 @@ import TextField from "@/components/form/TextField";
 import Button from "@/components/Button";
 import CustomLink from "@/components/Link";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter();
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -12,12 +15,18 @@ export default function LoginPage() {
         const email = form.email.value;
         const password = form.password.value;
 
-        await signIn("credentials", {
+        const result = await signIn("credentials", {
             redirect: false,
             email,
             password,
         });
-    }
+
+        if (result?.ok) {
+            router.push("/home");
+        } else {
+            // Exiba mensagem de erro se quiser
+        }
+    };
     return (
         <article className="max-w-96 w-full flex flex-col items-center justify-center py-4 px-6 border border-light-grey-400 rounded-2xl">
             <span>Entrar ou Cadastrar-se</span>

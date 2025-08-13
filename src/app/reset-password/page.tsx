@@ -4,14 +4,15 @@ import Button from "@/components/Button";
 import CustomLink from "@/components/Link";
 import Image from "next/image";
 import TextField from "@/components/form/TextField";
+import PasswordFields from "../register/PasswordFields";
 
 
-const EsqueciSenha = () => {
+const ResetPassword = () => {
     const router = useRouter();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        router.push("/reset-password");
+        router.push("/reset-password"); 
     };
 
     
@@ -19,8 +20,9 @@ const EsqueciSenha = () => {
         <article className="max-w-96 w-full flex flex-col items-center justify-center py-4 px-6 border border-light-grey-400 rounded-2xl">
             <span className="mb-4">Recuperar Senha</span>
             <form className="w-full flex flex-col items-center" onSubmit={handleSubmit}>
-                <Image src="/forgot-password.svg" alt="Esqueci Minha Senha" className="mt-2" height={167} width={172} />
-                <TextField label="Digite seu E-mail" id="email" name="email" type="email" className="mt-2" required/>
+                <Image src="/reset-password.svg" alt="Esqueci Minha Senha" className="mt-2" height={167} width={172} />
+                <TextField label="Token de verificação" id="token" name="token" type="text" className="mt-2" required/>
+                <PasswordFields />
                 <Button type="submit" appearance="primary" className="mt-2">Enviar email</Button>
             </form>
             <span className="my-2">ou</span>
@@ -29,4 +31,4 @@ const EsqueciSenha = () => {
     );
 }
 
-export default EsqueciSenha;
+export default ResetPassword;

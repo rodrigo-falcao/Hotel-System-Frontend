@@ -7,10 +7,21 @@ import CustomLink from "@/components/Link";
 import api from "@/api";
 import { useState } from "react";
 import PasswordFields from "./PasswordFields";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
+type SessionUser = {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    accessToken?: string;
+};
 
 const CadastrarPage = () => {
+    const router = useRouter();
     const [feedback, setFeedback] = useState<string | null>(null);
+    const { data: session } = useSession();
+    const token = (session?.user as SessionUser)?.accessToken;
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -24,11 +35,14 @@ const CadastrarPage = () => {
             avatar: null
         };
 
-        console.log("Payload enviado para /users:", payload);
-
         try {
-            await api.post("/users", payload);
+            await api.post("/users", payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             setFeedback("Usuário cadastrado com sucesso!");
+            router.push("/login");
         } catch (error) {
             console.error("Erro ao cadastrar usuário:", error);
             setFeedback("Erro ao cadastrar usuário. Tente novamente.");
@@ -47,7 +61,7 @@ const CadastrarPage = () => {
                     { label: "Sim", value: "ADMIN", id: "yes" },
                     { label: "Não", value: "USER", id: "no" }
                 ]} name="role" label="Você Deseja Anunciar uma hospedagem?" className="my-2"/>
-                <Button type="submit" appearance="primary" className="mt-2">Cadastrar</Button>
+                <Button type="submit" appearance="primary" className="mt-2" onClick={() => console.log("Botão clicado!")}>Cadastrar</Button>
             </form>
             {feedback && (
                 <span className={`my-2 ${feedback.includes("sucesso") ? "text-green-600" : "text-red-600"}`}>
