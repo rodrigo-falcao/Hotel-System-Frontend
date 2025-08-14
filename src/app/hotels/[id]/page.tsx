@@ -1,13 +1,18 @@
 import { cookies } from "next/headers";
 import { getHotelDetail } from "@/app/api/auth/hotels/action";
+import { redirect } from "next/navigation";
 import DetailPage from "@/components/DetailPage";
-import Image from "next/image";
 import HotelBookingForm from "./HotelBookingForm";
+import Image from "next/image";
+import { getServerSession } from "next-auth";
 
 async function getUserDetail(id: number) {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("access_token")?.value;
-
+    const session = await getServerSession()
+    if (!session) {
+        redirect('/login');
+    }
 
     const response = await fetch(`http://localhost:3000/users/${id}`, {
         headers: {
@@ -15,7 +20,10 @@ async function getUserDetail(id: number) {
         },
         cache: "no-store",
     });
-    if (!response.ok) return null;
+    if (!response.ok) {
+        redirect('/login');
+        return null;
+    }
     return response.json();
 }
 
